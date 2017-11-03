@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<title>无标题文档</title>
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-theme.min.css" />
+		<script src="../js/jquery-3.2.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+
+		<script language="JavaScript">
+//			$(function () {
+//				alert("....");
+//			});
+			$.getJSON("ctrl/proclass.php", function(data) {
+				
+				var html = '';
+				for(var i = 0; i < data.length; i++) {
+					$scid=data[i].sc_id;
+					html += "<tr><td>" + data[i].sc_id + "</td><td>" + data[i].sc_name + "</td><td>" + data[i].sc_detail + "</td><td>" + data[i].bc_name + "</td><td><a href='classEdit.php?sc_id="+data[i].sc_id +"'>修改</a> || <a href='ctrl/classDelete.php?sc_id="+data[i].sc_id+"'>删除</a></td></tr>";
+				}
+
+				$('#clum').html(html);
+			});
+		</script>
+		<style>
+			*{
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		
+		<div style="width: 80%;border: 1px solid royalblue;">
+			<a href="new_file.php">添加小类</a>
+			<a href="bigclassadd.html">添加小类</a>
+			<table class="table table-hover">
+			<thead>
+				<tr class="active">
+					<th>类别编号</th>
+					<th>类别名称</th>
+					<th>类别介绍</th>
+					<th>所属大类</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody id="clum">
+			</tbody>
+		</table>
+		</div>
+	</body>
+
+</html>
